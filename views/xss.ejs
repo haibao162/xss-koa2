@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <input id="xss" value="">
+    <button onclick="submit()">查询</button>
+    <!-- <img src="javascript:alert('XSS!')" onerror="javascript:alert('XSS!')"> -->
+  </body>
+  <script>
+    function submit(){
+        var data = {};
+        console.log('132', 132);
+        data.xssData = document.getElementById('xss').value;
+        console.log(data);
+        $.ajax({
+        url: 'http://localhost:4001/api/login',
+        type: 'POST',
+        data: data,
+        success: function(result){
+          // alert(result);
+       }
+      });
+    }
+    </script>
+</html>

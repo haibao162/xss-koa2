@@ -9,6 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "axios": "^0.20.0",
     "child_process": "^1.0.2",
     "debug": "^4.1.1",
     "ejs": "~2.3.3",
@@ -20,7 +22,8 @@
     "koa-onerror": "^4.1.0",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
-    "koa-views": "^6.2.0"
+    "koa-views": "^6.2.0",
+    "koa2-cors": "^2.0.6"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
