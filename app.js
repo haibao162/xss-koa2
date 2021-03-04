@@ -6,6 +6,9 @@ const onerror = require("koa-onerror");
 const bodyparser = require("koa-bodyparser");
 const logger = require("koa-logger");
 var cors = require("@koa/cors");
+const path = require('path');
+
+const staticFiles = require('koa-static');
 
 const xss = require("./routes/xss");
 
@@ -23,7 +26,8 @@ app.use(logger());
 app.use(cors({
   credentials: true,
 }));
-app.use(require("koa-static")(__dirname + "/public"));
+
+app.use(staticFiles(path.resolve(__dirname, 'public')));
 
 app.use(
   views(__dirname + "/views", {
@@ -41,6 +45,7 @@ app.use(async (ctx, next) => {
 
 // routes
 app.use(xss.routes(), xss.allowedMethods());
+
 // error-handling
 app.on("error", (err, ctx) => {
   console.error("server error", err, ctx);
