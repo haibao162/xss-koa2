@@ -11,6 +11,8 @@ const path = require('path');
 const staticFiles = require('koa-static');
 
 const xss = require("./routes/xss");
+const xss_alert = require("./routes/xss-alert");
+const token = require("./routes/token");
 
 // error handler
 onerror(app);
@@ -26,6 +28,7 @@ app.use(logger());
 app.use(cors({
   credentials: true,
 }));
+// The value of the 'Access-Control-Allow-Credentials' header in the response is '' which must be 'true' when the request's credentials mode is 'include'.
 
 app.use(staticFiles(path.resolve(__dirname, 'public')));
 
@@ -35,16 +38,10 @@ app.use(
   })
 );
 
-// logger
-app.use(async (ctx, next) => {
-  const start = new Date();
-  await next();
-  const ms = new Date() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
-});
-
 // routes
 app.use(xss.routes(), xss.allowedMethods());
+app.use(xss_alert.routes(), xss_alert.allowedMethods());
+app.use(token.routes(), token.allowedMethods());
 
 // error-handling
 app.on("error", (err, ctx) => {

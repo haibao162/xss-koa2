@@ -60,4 +60,4 @@ const getFileMimeType = function(filePath) {
         mimeType : mimetype
     }
 }
-getFileMimeType('./index.js');
+getFileMimeType('./cms_logo.jpg');
