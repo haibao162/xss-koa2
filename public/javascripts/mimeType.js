@@ -60,4 +60,4 @@ const getFileMimeType = function(filePath) {
         mimeType : mimetype
     }
 }
-getFileMimeType('./cms_logo.jpg');
+getFileMimeType('./excel.xls');

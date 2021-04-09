@@ -1,7 +1,6 @@
 const router = require("koa-router")();
 
 
-
 router.all("/xss-alert", async (ctx, next) => {
     console.log('ctx', 11);
     ctx.body = {
