@@ -11,6 +11,7 @@ const path = require('path');
 const staticFiles = require('koa-static');
 
 const xss = require("./routes/xss");
+const main = require("./routes/main");
 const xss_alert = require("./routes/xss-alert");
 const token = require("./routes/token");
 
@@ -39,6 +40,7 @@ app.use(
 );
 
 // routes
+app.use(main.routes(), main.allowedMethods());
 app.use(xss.routes(), xss.allowedMethods());
 app.use(xss_alert.routes(), xss_alert.allowedMethods());
 app.use(token.routes(), token.allowedMethods());
